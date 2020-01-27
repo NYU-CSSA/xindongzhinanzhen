@@ -2,15 +2,11 @@ import React from 'react';
 import './App.css';
 
 let questions = [
-  ['三个答案你随便选一个吧', 'A', 1, 'B', 2, 'C', 3],
-  ['question 1', 'A', 4, 'B', 4, 'C', 4],
-  ['question 2', 'A', 4, 'B', 4, 'C', 4],
-  ['question 3', 'A', 4, 'B', 4, 'C', 4],
-  ['question 4', 'A', 5, 'B', 6, 'C', 7],
-  ['question 5', 'A', 8, 'B', 8, 'C', 8],
-  ['question 6', 'A', 8, 'B', 8, 'C', 8],
-  ['question 7', 'A', 8, 'B', 8, 'C', 8],
-  ['question 8', 'A', null, 'B', null, 'C', null],
+  ['你更倾向于是', '肉食主义者', 1, '素食主义者', 2, '均衡饮食者', 3],
+  ['以下食物你更喜欢哪种', '炸鸡🍗', 4, '烤肉🍖', 4, '火锅🍲', 4],
+  ['以下食物你更喜欢哪种', '炒菜🥦', 4, '麻辣烫🍲', 4, '沙拉🥗', 4],
+  ['以下食物你更喜欢哪种', '米饭🍚', 4, '面食🍜', 4, '都差不多', 4],
+  ['以下三款冰淇淋，你更喜欢', '香草🌿', null, '巧克力🍫', null, '草莓🍓', null],
 ]
 
 function next_question(current_question, answer_num) {
@@ -22,14 +18,18 @@ class App extends React.Component {
     super(props);
     this.state = {
       current_question: 0,
-      answers: {},
+      answers: [],
       state: "start",
     }
   }
 
   handle_answer(ans_num) {
-    let answers = this.state.answers;
-    answers[this.state.current_question] = ans_num;
+    let answers = this.state.answers.slice();
+    answers.push({
+      'question_num': this.state.current_question,
+      'ans_num': ans_num,
+      'ans': questions[this.state.current_question][ans_num * 2 + 1],
+    });
     let next_ques = next_question(this.state.current_question, ans_num);
     if (next_ques === null) {
       this.setState({
@@ -42,7 +42,7 @@ class App extends React.Component {
         current_question: next_ques,
       })
     }
-    console.log(answers)
+    // console.log(answers)
   }
 
   render() {
@@ -59,8 +59,8 @@ class App extends React.Component {
       return (
         <div className="container test-result">
           <h1>测试结果</h1>
-          <h2>你就是NYU最靓的仔吧</h2>
-          <p>别试了就这一个测试结果</p>
+          <h3>你是一个喜欢吃{this.state.answers[1]['ans']}和{this.state.answers[2]['ans']}冰淇淋的{this.state.answers[0]['ans']}</h3>
+          <p>不准你打我</p>
           <img width="100px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
         </div>
       )
@@ -71,23 +71,29 @@ class App extends React.Component {
         <div className="card question">
           <div className="card-body">
             <h5 className="card-title">{questions[this.state.current_question][0]}</h5>
-            <p className="card-text">这里有一些问题描述不知道说些什么好如果你不需要这个问题描述那我也可以把它关掉。</p>
-          </div>
-        </div>
-        <div className="answers">
-          <div className="row">
-            <div className="col-sm">
-              <button type="button" className="btn btn-primary" onClick={() => { this.handle_answer(0) }}>A. AAAAAAAAAAAAAAAAAAAA</button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm">
-              <button type="button" className="btn btn-primary" onClick={() => { this.handle_answer(1) }}>B. BBBBBBBBBBBBBBBBBB</button>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-sm">
-              <button type="button" className="btn btn-primary" onClick={() => { this.handle_answer(2) }}>C. CCCCCCC</button>
+            {/* <p className="card-text">这里有一些问题描述不知道说些什么好如果你不需要这个问题描述那我也可以把它关掉。</p> */}
+            <div className="answers">
+              <div className="row">
+                <div className="col-sm">
+                  <button type="button" className="btn btn-primary" onClick={() => { this.handle_answer(0) }}>
+                    {questions[this.state.current_question][1]}
+                  </button>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-sm">
+                  <button type="button" className="btn btn-primary" onClick={() => { this.handle_answer(1) }}>
+                    {questions[this.state.current_question][3]}
+                  </button>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-sm">
+                  <button type="button" className="btn btn-primary" onClick={() => { this.handle_answer(2) }}>
+                    {questions[this.state.current_question][5]}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
