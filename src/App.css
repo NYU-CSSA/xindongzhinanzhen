@@ -16,9 +16,13 @@
   margin-top: 50%;
 }
 
-.answers .btn {
+.answers .btn-primary {
   margin-bottom: 10px;
   width: 80%;
+}
+
+.answers .btn-primary:hover {
+  background-color: #007bff;
 }
 
 .answers {
