@@ -8,12 +8,12 @@
 }
 
 .test-result {
-  margin-top: 50%;
+  margin-top: 20%;
   text-align: center;
 }
 
 .question {
-  margin-top: 50%;
+  margin-top: 20%;
 }
 
 .answers .btn-primary {
@@ -26,6 +26,13 @@
 }
 
 .answers {
-  margin-top: 30%;
+  margin-top: 10%;
   text-align: center;
 }
+
+/* .invitation {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+} */
