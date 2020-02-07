@@ -3,46 +3,46 @@ import './App.css';
 
 let questions = [
   ['placeholder for question 0', [], []],
-  ['闲暇时刻喜欢干什么？', ['A. 和朋友外出玩乐', 'B. 一个人宅在家中'], [2, 3]],
-  ['跟朋友出去玩，你会选择以下？', ['A.逛街、逛展、逛公园', 'B.玩狼人、玩剧本、玩游戏', 'C.吃吃吃'], [4, 4, 4]],
+  ['我经常出没在——', ['A. Bobst', 'B. Ktown', 'C. 中国城', 'D. 法拉盛', 'E. Soho', 'F. 家里'], [2, 2, 2, 2, 2, 2]],
+  ['周末当然要：', ['A. 和朋友浪浪浪', 'B.一个人肥宅快乐'], [3, 4]],
   [
-    '你在家喜欢如何打发时光？',
-    ['A. 努力学习，认真读书', 'B. 手机电脑不离手，小说刷剧打游戏', 'C. 撸猫撸狗，撸遍“天下”'],
-    [4, 4, 4]
+    '跟朋友出去玩，你会选择以下？',
+    ['A. 压马路，艺术展，逛逛逛', 'B. 狼人杀、剧本杀，杀杀杀', 'C. 吃吃吃，喝喝喝，蹦蹦蹦'],
+    [5, 5, 5]
   ],
   [
-    '以下哪种旅行方式你更喜欢? ',
-    ['A. 佛系度假型：我是谁，我在哪，我要干什么？不重要。', 'B. 景点打卡型：这里这里和这里，我都要去！'],
-    [5, 6]
+    '肥宅快乐的方式：',
+    ['A. 沉迷读书无法自拔', 'B. 小说网剧Netflix', 'C. 屠龙宝刀，原地游戏'],
+    [5, 5, 5]
   ],
   [
-    '以下哪种佛系度假你更喜欢？',
-    ['A. 在度假酒店吃喝玩乐', 'B. 走哪玩哪，随心所欲'],
-    [7, 7]
+    '嘴里当然要有点：',
+    ['A. 奶茶', 'B. 咖啡', 'C. 果汁', 'D. 空气'],
+    [6, 6, 6, 6]
   ],
   [
-    '以下哪种景点是你最喜欢去打卡的？',
-    ['A. 自然美景', 'B. 城市风光', 'C. 主题公园'],
-    [7, 7, 7],
-    ['6a.png', '6b.png', '6c.png']
+    '感恩节和春假我选择',
+    ['A. 佛系度假', 'B. 异国流浪', 'C. 留守纽约'],
+    [7, 7, 8]
   ],
   [
-    '以下两种你会选择：',
-    ['A. 可以有很多朋友天天在一起玩，但是很难交心', 'B. 可以有很少的朋友甚至只有一个，但可以交心'],
-    [8, 8]
+    '以下哪种景点是我最喜欢去打卡的？',
+    ['A.', 'B.', 'C.', 'D.'],
+    [8, 8, 8, 8],
+    ['7a.png', '7b.png', '7c.png', '7d.png']
   ],
   [
-    '能否接受对象有异性知己？',
-    ['A. 是', 'B. 否'],
+    '我的朋友都是：',
+    ['A. 没有感情撩遍天下的交友机器', 'B. 为我两肋插刀的好基友'],
     [9, 9]
   ],
   [
-    '你相信星座吗？',
-    ['A. 深信不疑', 'B. 略微参考', 'C. I don’t care'],
+    '星座这个东西：',
+    ['A. 了如指掌', 'B. 随便看看', 'C. 与我无瓜'],
     [10, 10, 10]
   ],
   [
-    '以下三种表情包，你最常用的类型是：',
+    '我的表情差不多都是：',
     ['A. 可爱的', 'B. 文字的', 'C. 傻X的'],
     [null, null, null],
     ['10a.gif', '10b.png', '10c.gif']
@@ -51,6 +51,11 @@ let questions = [
 
 function next_question(current_question, answer_num) {
   return questions[current_question][2][answer_num];
+}
+
+function get_random_of(slash_separated_string) {
+  let items = slash_separated_string.split('/');
+  return items[Math.floor((Math.random() * items.length))];
 }
 
 class App extends React.Component {
@@ -97,7 +102,7 @@ class App extends React.Component {
               <div>
                 <img
                   src={process.env.PUBLIC_URL + "/images/" + this_question[3][index]}
-                  width="50%"
+                  width="70%"
                   alt=''
                 />
               </div>
@@ -138,14 +143,66 @@ class App extends React.Component {
     )
   }
 
+  generate_title() {
+    let answers_map = {};
+    for (let i in this.state.answers) {
+      let answer = this.state.answers[i];
+      answers_map[answer['question_num']] = answer;
+    }
+    // console.log(answers_map);
+    let my_title = get_random_of('盘踞/占领/聚居/扎根');
+    my_title += answers_map[1]['ans'].split(' ')[1];
+    // 3A精致生活 3B脑力社交 3C囤积脂肪 3D咚次哒次 4A GPA4.0 4B长期咸鱼 4C沉迷游戏
+    if (3 in answers_map) {
+      switch (answers_map[3]['ans_num']) {
+        case 0: my_title += '精致生活'; break;
+        case 1: my_title += '脑力社交'; break;
+        case 2: my_title += '囤积脂肪'; break;
+        case 3: my_title += '咚次哒次'; break;
+        default:
+          console.log(answers_map);
+      }
+    } else if (4 in answers_map) {
+      switch (answers_map[4]['ans_num']) {
+        case 0: my_title += 'GPA4.0'; break;
+        case 1: my_title += '长期咸鱼'; break;
+        case 2: my_title += '沉迷游戏'; break;
+        default:
+          console.log(answers_map);
+      }
+    } else {
+      console.log(answers_map);
+    }
+    my_title += '的';
+    switch (answers_map[5]['ans_num']) {
+      case 0: my_title += '波霸'; break;
+      case 1: my_title += '中毒'; break;
+      case 2: my_title += '健康'; break;
+      case 3: my_title += '养生'; break;
+      default:
+        console.log(answers_map);
+    }
+    switch (answers_map[10]['ans_num']) {
+      case 0: my_title += get_random_of('萌物/弟弟/女孩/男孩'); break;
+      case 1: my_title += get_random_of('大佬/老板/总裁/一哥/一姐'); break;
+      case 2: my_title += get_random_of('男子/女子/沙雕/尤物/小伙'); break;
+      default:
+        console.log(answers_map);
+    }
+
+    return my_title;
+  }
+
   render_finished() {
     return (
       <div className="container test-result">
-        <h1>测试结果</h1>
-        <h3>{this.state.answers.map((x) => {
+        <h3>我的NYU称号：</h3>
+        <h1>
+          {this.generate_title()}
+        </h1>
+        <p>({this.state.answers.map((x) => {
           return x.question_num + ': ' + String.fromCharCode('A'.charCodeAt(0) + x.ans_num) + ', '
-        })}</h3>
-        <p>你就是NYU最靓的仔</p>
+        })})</p>
         <img width="100px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
         <br />
         {this.state.rejected ?
