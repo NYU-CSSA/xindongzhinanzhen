@@ -1,10 +1,27 @@
+html {
+  background-image: url("/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
+  background-attachment: fixed;
+  background-color: rgb(145, 132, 247);
+  height: 100%;
+}
+
+body {
+  color: #ffffff;
+  background-color: rgb(145, 132, 247, 0);
+}
+
+
 .test-start {
   margin-top: 50%;
   text-align: center;
+  color: #fff681;
 }
 
 .test-start .btn {
-  margin-top: 50%;
+  margin-top: 10%;
 }
 
 .test-result {
@@ -12,17 +29,48 @@
   text-align: center;
 }
 
-.question {
+.invitation {
+  background-color: rgb(145, 132, 247, 0);
   margin-top: 20%;
+  border: none;
 }
 
-.answers .btn-primary {
+.question {
+  background-color: rgb(145, 132, 247, 0);
+  margin-top: 20%;
+  border: none;
+  color: #fff681;
+}
+
+.btn {
+  color: #ffffff;
+  background-color: rgb(145, 132, 247, 0.8);
+  border: solid;
+  border-width: 1px;
+  margin: 10px;
+}
+.btn:hover {
+  color: #ffffff;
+  background-color: rgb(145, 132, 247, 0.8);
+}
+
+.form {
+   margin-top: 10%;
+   text-align: center;
+}
+
+.form .form-group {
+  text-align: left;
+}
+
+.answer-button {
   margin-bottom: 10px;
   width: 80%;
 }
 
-.answers .btn-primary:hover {
-  background-color: #007bff;
+.answer-button:active{
+  color: #ffffff;
+  background-color: rgb(145, 132, 247);
 }
 
 .answers {

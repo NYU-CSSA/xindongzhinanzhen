@@ -66,6 +66,10 @@ class App extends React.Component {
       answers: [],
       state: "start",
       rejected: false,
+      name: '',
+      email: '',
+      sex: '',
+      wechat: '',
     }
   }
 
@@ -96,7 +100,7 @@ class App extends React.Component {
     return (
       <div className="row" key={index}>
         <div className="col-sm">
-          <button type="button" className="btn btn-primary" onClick={() => { this.handle_answer(index) }}>
+          <button type="button" className="btn answer-button" onClick={() => { this.handle_answer(index) }}>
             {ans_string}
             {this_question.length >= 4 ? (
               <div>
@@ -118,7 +122,7 @@ class App extends React.Component {
       <div className="invitation">
         <div className="container">
           {/* <div className="card" style={{"width": "18rem"}}> */}
-          <div className="card question">
+          <div className="card invitation">
             <div className="card-body">
               <h5 className="card-title">{this.state.rejected ? "XXX活动！" : "查看结果之前要不要报名个活动！"}</h5>
               <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
@@ -136,9 +140,8 @@ class App extends React.Component {
   render_start() {
     return (
       <div className="container test-start">
-        <h1>XX测试</h1>
-        <h2>快点按钮开始测试吧</h2>
-        <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: "testing" }) }}>快让我开始测试啊</button>
+        <h1>测测你在NYU是什么样的人？</h1>
+        <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: "testing" }) }}>开始测试</button>
       </div>
     )
   }
@@ -193,6 +196,49 @@ class App extends React.Component {
     return my_title;
   }
 
+  send_result(contains_information = false) {
+    if (contains_information) {
+      if (this.state.name === '' || this.state.email === '' || this.state.sex === '' || this.state.wechat === '') {
+        alert("请正确填写所有信息");
+        return;
+      }
+      if (!this.state.email.endsWith('@nyu.edu')) {
+        alert("仅限NYU学生参加，请使用NYU邮箱");
+        return;
+      }
+    }
+    let answers_map = {};
+    for (let i in this.state.answers) {
+      let answer = this.state.answers[i];
+      answers_map[answer['question_num']] = answer['ans_num'];
+    }
+    for (let i in questions) {
+      if (!(i in answers_map)) {
+        answers_map[i] = -1;
+      }
+    }
+
+    answers_map['name'] = this.state.name;
+    answers_map['email'] = this.state.email;
+    answers_map['sex'] = this.state.sex;
+    answers_map['wechat'] = this.state.wechat;
+
+
+    let result = JSON.stringify(answers_map);
+    console.log(result);
+
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', () => {
+      console.log(xhr.responseText);
+    })
+    xhr.open('GET', 'https://www.cssanyu.org/2020/questionnaire.php?data=' + encodeURIComponent(result));
+    xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.send();
+
+    // this.setState({ state: 'finished' })
+  }
+
   render_finished() {
     return (
       <div className="container test-result">
@@ -200,14 +246,15 @@ class App extends React.Component {
         <h1>
           {this.generate_title()}
         </h1>
-        <p>({this.state.answers.map((x) => {
+        {/* <p>({this.state.answers.map((x) => {
           return x.question_num + ': ' + String.fromCharCode('A'.charCodeAt(0) + x.ans_num) + ', '
-        })})</p>
-        <img width="100px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
-        <br />
+        })})</p> */}
         {this.state.rejected ?
           <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: 'invitation' }) }}>报名参加活动</button>
           : ''}
+        <br />
+        <img width="80px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
+        <p>扫码测测我的NYU人格</p>
       </div>
     )
   }
@@ -233,11 +280,35 @@ class App extends React.Component {
 
   render_form() {
     return (
-      <div>
-        中文姓名<input type="text" name="name" /><br />
-        性别<input type="text" name="sex" /><br />
-        微信号<input type="text" name="wechat" /><br />
-        <button onClick={() => { alert('报名成功！'); this.setState({ state: 'finished' }) }}>提交</button>
+      <div className="container form">
+        <h1>
+          心动指南针
+        </h1>
+        <h5>报名表</h5>
+        <form>
+          <div className="form-group">
+            <label htmlFor="email">邮箱</label>
+            <input type="email" className="form-control" name="email" placeholder='email' onChange={(e) => { this.setState({ email: e.target.value }) }} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="name">中文姓名</label>
+            <input type="text" className="form-control" name="name" placeholder='name' onChange={(e) => { this.setState({ name: e.target.value }) }} />
+          </div>
+        </form>
+        <div className="form-group">
+          <label htmlFor="sex">性别</label>
+          <select id="sex" className="form-control" defaultValue="" onChange={(e) => { this.setState({ sex: e.target.value }) }} >
+            <option value="" disabled hidden>请选择</option>
+            <option value="male">男</option>
+            <option value="female">女</option>
+            <option value="notsay">我不想说</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label htmlFor="wechat">微信号</label>
+          <input type="text" name="wechat" placeholder="wechat id" className="form-control" onChange={(e) => { this.setState({ wechat: e.target.value }) }} />
+        </div>
+        <button className='btn' onClick={() => { this.send_result(true) }}>提交</button>
       </div>
     )
   }
