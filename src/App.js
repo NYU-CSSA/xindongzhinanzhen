@@ -124,8 +124,8 @@ class App extends React.Component {
           {/* <div className="card" style={{"width": "18rem"}}> */}
           <div className="card invitation">
             <div className="card-body">
-              <h5 className="card-title">{this.state.rejected ? "XXX活动！" : "查看结果之前要不要报名个活动！"}</h5>
-              <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
+              <h5 className="card-title">{this.state.rejected ? "心动指南针" : "根据你的兴趣结交更多的人！"}</h5>
+              <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动——『心动指南针』。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
               <div className="answers">
                 <button type="button" className="btn btn-primary" onClick={() => { this.setState({ rejected: false, state: 'form' }) }}>愿意，现在就报名</button>
                 <button type="button" className="btn btn-primary" onClick={() => { this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
@@ -250,7 +250,7 @@ class App extends React.Component {
           return x.question_num + ': ' + String.fromCharCode('A'.charCodeAt(0) + x.ans_num) + ', '
         })})</p> */}
         {this.state.rejected ?
-          <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: 'invitation' }) }}>报名参加活动</button>
+  <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: 'invitation' }) }}>报名参加『心动指南针』</button>
           : ''}
         <br />
         <img width="80px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
