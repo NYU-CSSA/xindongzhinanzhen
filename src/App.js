@@ -140,7 +140,7 @@ class App extends React.Component {
   render_start() {
     return (
       <div className="container test-start">
-        <h1>测测你在NYU是什么样的人？</h1>
+        <h1>测测你的NYU称号是什么？</h1>
         <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: "testing" }) }}>开始测试</button>
       </div>
     )
@@ -186,9 +186,9 @@ class App extends React.Component {
         console.log(answers_map);
     }
     switch (answers_map[10]['ans_num']) {
-      case 0: my_title += get_random_of('萌物/弟弟/女孩/男孩'); break;
-      case 1: my_title += get_random_of('大佬/老板/总裁/一哥/一姐'); break;
-      case 2: my_title += get_random_of('男子/女子/沙雕/尤物/小伙'); break;
+      case 0: my_title += get_random_of('萌物/弟弟/孩子'); break;
+      case 1: my_title += get_random_of('大佬/老板/总裁/一哥'); break;
+      case 2: my_title += get_random_of('沙雕/尤物/小伙'); break;
       default:
         console.log(answers_map);
     }
@@ -227,16 +227,32 @@ class App extends React.Component {
     let result = JSON.stringify(answers_map);
     console.log(result);
 
-    var xhr = new XMLHttpRequest();
-    xhr.addEventListener('load', () => {
-      console.log(xhr.responseText);
+    var xhr0 = new XMLHttpRequest();
+    xhr0.addEventListener('load', () => {
+      console.log(xhr0.responseText);
+      if (xhr0.responseText.includes("already registered")) {
+        alert("您的邮箱已经报名过了!");
+      } else {
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener('load', () => {
+          console.log(xhr.responseText);
+          if (xhr.responseText.includes("already registered")) {
+            alert("您的邮箱已经报名过了!");
+          }
+        })
+        console.log((result));
+        xhr.open('GET', 'https://www.cssanyu.org/2020/questionnaire.php?data=' + encodeURIComponent(result));
+        // xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+        // xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+        xhr.send();
+      }
     })
-    xhr.open('GET', 'https://www.cssanyu.org/2020/questionnaire.php?data=' + encodeURIComponent(result));
-    xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
-    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-    xhr.send();
+    xhr0.open('GET', 'https://www.cssanyu.org/2020/check_exist.php?data=' + encodeURIComponent(result));
+    // xhr0.setRequestHeader('Access-Control-Allow-Headers', '*');
+    // xhr0.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr0.send();
 
-    // this.setState({ state: 'finished' })
+    // this.setState({ state: 'finished' });
   }
 
   render_finished() {
@@ -250,11 +266,11 @@ class App extends React.Component {
           return x.question_num + ': ' + String.fromCharCode('A'.charCodeAt(0) + x.ans_num) + ', '
         })})</p> */}
         {this.state.rejected ?
-  <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: 'invitation' }) }}>报名参加『心动指南针』</button>
+          <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: 'invitation' }) }}>报名参加『心动指南针』</button>
           : ''}
         <br />
         <img width="80px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
-        <p>扫码测测我的NYU人格</p>
+        <p>扫码测测我的NYU称号</p>
       </div>
     )
   }
@@ -287,7 +303,7 @@ class App extends React.Component {
         <h5>报名表</h5>
         <form>
           <div className="form-group">
-            <label htmlFor="email">邮箱</label>
+            <label htmlFor="email">邮箱(仅限使用NYU邮箱报名)</label>
             <input type="email" className="form-control" name="email" placeholder='email' onChange={(e) => { this.setState({ email: e.target.value }) }} />
           </div>
           <div className="form-group">
