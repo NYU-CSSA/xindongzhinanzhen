@@ -22,7 +22,7 @@ let questions = [
   ],
   [
     '感恩节和春假我选择',
-    ['A. 佛系度假', 'B. 异国流浪', 'C. 留守纽约'],
+    ['A. 周边城市游', 'B. 异国流浪', 'C. 留守纽约'],
     [7, 7, 8]
   ],
   [
@@ -125,10 +125,10 @@ class App extends React.Component {
           <div className="card invitation">
             <div className="card-body">
               <h5 className="card-title">{this.state.rejected ? "心动指南针" : "根据你的兴趣结交更多的人！"}</h5>
-              <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动——『心动指南针』。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
+              <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动——『心动指南针』。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动—— 【铭心大侦探】，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
               <div className="answers">
                 <button type="button" className="btn btn-primary" onClick={() => { this.setState({ rejected: false, state: 'form' }) }}>愿意，现在就报名</button>
-                <button type="button" className="btn btn-primary" onClick={() => { this.send_result(false); this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
+                <button type="button" className="btn btn-primary" onClick={() => {this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
               </div>
             </div>
           </div>
@@ -186,9 +186,9 @@ class App extends React.Component {
         console.log(answers_map);
     }
     switch (answers_map[10]['ans_num']) {
-      case 0: my_title += get_random_of('萌物/弟弟/孩子'); break;
+      case 0: my_title += get_random_of('萌物/小奶娃/宝贝'); break;
       case 1: my_title += get_random_of('大佬/老板/总裁/一哥'); break;
-      case 2: my_title += get_random_of('沙雕/尤物/小伙'); break;
+      case 2: my_title += get_random_of('沙雕/尤物'); break;
       default:
         console.log(answers_map);
     }
@@ -196,17 +196,17 @@ class App extends React.Component {
     return my_title;
   }
 
-  send_result(contains_information = false) {
-    if (contains_information) {
-      if (this.state.name === '' || this.state.email === '' || this.state.sex === '' || this.state.wechat === '') {
-        alert("请正确填写所有信息");
-        return;
-      }
-      if (!this.state.email.endsWith('@nyu.edu')) {
-        alert("仅限NYU学生参加，请使用NYU邮箱");
-        return;
-      }
+  send_result() {
+
+    if (this.state.name === '' || this.state.email === '' || this.state.sex === '' || this.state.wechat === '') {
+      alert("请正确填写所有信息");
+      return;
     }
+    if (!this.state.email.endsWith('@nyu.edu')) {
+      alert("仅限NYU学生参加，请使用NYU邮箱");
+      return;
+    }
+
     let answers_map = {};
     for (let i in this.state.answers) {
       let answer = this.state.answers[i];
@@ -252,14 +252,14 @@ class App extends React.Component {
     // xhr0.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhr0.send();
 
-    // this.setState({ state: 'finished' });
+    this.setState({ state: 'finished' });
   }
 
   render_finished() {
     return (
       <div className="container test-result">
         <h3>我的NYU称号：</h3>
-        <h1>
+        <h1 className="mytitle">
           {this.generate_title()}
         </h1>
         {/* <p>({this.state.answers.map((x) => {
@@ -269,8 +269,8 @@ class App extends React.Component {
           <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: 'invitation' }) }}>报名参加『心动指南针』</button>
           : ''}
         <br />
-        <img width="80px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
-        <p>扫码测测我的NYU称号</p>
+        <img width="120px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
+        <p>截图至朋友圈<br />让他们扫码测测"我的NYU称号"</p>
       </div>
     )
   }
@@ -303,11 +303,11 @@ class App extends React.Component {
         <h5>报名表</h5>
         <form>
           <div className="form-group">
-            <label htmlFor="email">邮箱(仅限使用NYU邮箱报名)</label>
+            <label htmlFor="email">邮箱（一个NYU邮箱仅能测试一次哦～）</label>
             <input type="email" className="form-control" name="email" placeholder='email' onChange={(e) => { this.setState({ email: e.target.value }) }} />
           </div>
           <div className="form-group">
-            <label htmlFor="name">中文姓名</label>
+            <label htmlFor="name">昵称</label>
             <input type="text" className="form-control" name="name" placeholder='name' onChange={(e) => { this.setState({ name: e.target.value }) }} />
           </div>
         </form>

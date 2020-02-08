@@ -21,7 +21,8 @@ body {
 }
 
 .test-start .btn {
-  margin-top: 10%;
+  margin-top: 20%;
+  font-size: x-large;
 }
 
 .test-result {
@@ -76,6 +77,10 @@ body {
 .answers {
   margin-top: 10%;
   text-align: center;
+}
+
+.mytitle {
+  color: #fff681;
 }
 
 /* .invitation {
