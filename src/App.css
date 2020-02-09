@@ -160,3 +160,7 @@ body {
 .screenshot-text {
   margin-top: 10px;
 }
+
+.image-div {
+  text-align: center;
+}

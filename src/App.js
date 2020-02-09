@@ -103,7 +103,7 @@ class App extends React.Component {
           <button type="button" className="btn answer-button" onClick={() => { this.handle_answer(index) }}>
             {ans_string}
             {this_question.length >= 4 ? (
-              <div>
+              <div className="image-div">
                 <img
                   src={process.env.PUBLIC_URL + "/images/" + this_question[3][index]}
                   width="90%"
