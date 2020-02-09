@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "zkqkhy";
+  src: url("站酷庆科黄油体.ttf") format('truetype');
+  font-style: normal;
+  font-weight: normal;
+  font-size: large;
+}
 html {
   background-image: url("https://www.cssanyu.org/2020/questionnaire/bg.jpg");
   background-repeat: no-repeat;
@@ -18,16 +25,19 @@ body {
   margin-top: 30%;
   text-align: center;
   color: #fff681;
+  font-family: "zkqkhy";
 }
 
 .test-start .btn {
   margin-top: 20%;
   font-size: x-large;
+  font-family: "zkqkhy";
 }
 
 .test-result {
   margin-top: 20%;
   text-align: center;
+  font-family: "zkqkhy";
 }
 
 .invitation {
@@ -41,6 +51,11 @@ body {
   margin-top: 20%;
   border: none;
   color: #fff681;
+  font-family: "zkqkhy";
+}
+
+.card-title {
+  font-size: xx-large;
 }
 
 .btn {
@@ -49,43 +64,46 @@ body {
   border: solid;
   border-width: 1px;
   margin: 10px;
+  font-family: "zkqkhy";
+  font-size: x-large;
 }
 .btn:hover {
   color: #ffffff;
   background-color: rgb(145, 132, 247, 0.8);
+  font-family: "zkqkhy";
+  font-size: x-large;
 }
 
 .form {
    margin-top: 10%;
    text-align: center;
+  font-family: "zkqkhy";
 }
 
 .form .form-group {
   text-align: left;
+  font-family: "zkqkhy";
 }
 
 .answer-button {
   margin-bottom: 10px;
   width: 80%;
+  font-family: "zkqkhy";
 }
 
 .answer-button:active{
   color: #ffffff;
   background-color: rgb(145, 132, 247);
+  font-family: "zkqkhy";
 }
 
 .answers {
   margin-top: 10%;
   text-align: center;
+  font-family: "zkqkhy";
 }
 
 .mytitle {
   color: #fff681;
+  font-family: "zkqkhy";
 }
-
-/* .invitation {
-  z-index: 1;
-  position: absolute;
-  left: 0;
-  top: 0;
-} */
