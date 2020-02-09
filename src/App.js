@@ -27,7 +27,7 @@ let questions = [
   ],
   [
     '以下哪种景点是我最喜欢去打卡的？',
-    ['A.', 'B.', 'C.', 'D.'],
+    ['', '', '', ''],
     [8, 8, 8, 8],
     ['7a.png', '7b.png', '7c.png', '7d.png']
   ],
@@ -99,14 +99,14 @@ class App extends React.Component {
     let this_question = questions[this.state.current_question];
     return (
       <div className="row" key={index}>
-        <div className="col-sm">
+        <div className="ans-btn-group">
           <button type="button" className="btn answer-button" onClick={() => { this.handle_answer(index) }}>
             {ans_string}
             {this_question.length >= 4 ? (
               <div>
                 <img
                   src={process.env.PUBLIC_URL + "/images/" + this_question[3][index]}
-                  width="70%"
+                  width="90%"
                   alt=''
                 />
               </div>
@@ -130,7 +130,7 @@ class App extends React.Component {
               </div>
               <div className="answers">
                 <button type="button" className="btn btn-primary inv-btn" onClick={() => { this.setState({ rejected: false, state: 'form' }) }}>愿意，现在就报名</button>
-                <button type="button" className="btn btn-primary inv-btn" onClick={() => {this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
+                <button type="button" className="btn btn-primary inv-btn" onClick={() => { this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@ class App extends React.Component {
       <div className="container test-start">
         <h2>测测你的</h2>
         <h1>NYU称号</h1>
-        <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: "testing" }) }}>开始测试</button>
+        <button type="button" className="btn start-btn" onClick={() => { this.setState({ state: "testing" }) }}>开始测试</button>
       </div>
     )
   }
@@ -273,7 +273,7 @@ class App extends React.Component {
           : ''}
         <br />
         <img width="120px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
-        <p>截图至朋友圈<br />扫码一起来测"我的NYU称号"</p>
+        <p className="screenshot-text">截图至朋友圈<br />扫码一起来测"我的NYU称号"</p>
       </div>
     )
   }

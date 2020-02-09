@@ -11,14 +11,31 @@ html {
   background-position: center bottom;
   background-size: cover;
   background-attachment: fixed;
-  background-color: rgb(145, 132, 247);
+  background-color: rgb(149, 128, 255);
   height: 100%;
 }
 
 body {
   color: #ffffff;
-  background-color: rgb(145, 132, 247, 0);
+  background-color: rgb(149, 128, 255, 0);
   font-family: "zkqkhy";
+}
+
+.btn {
+  color: #ffffff;
+  background-color: rgb(149, 128, 255, 1);
+  border: solid;
+  border-width: 1px;
+  margin: 10px;
+  /* font-family: "zkqkhy"; */
+  font-size: x-large;
+}
+
+.btn:hover {
+  color: #ffffff;
+  background-color: rgb(149, 128, 255, 1);
+  /* font-family: "zkqkhy"; */
+  font-size: x-large;
 }
 
 .test-start {
@@ -36,56 +53,38 @@ body {
   font-size: 50px;
 }
 
-.test-start .btn {
-  margin-top: 20%;
-  font-size: 40px;
-  /* font-family: "zkqkhy"; */
-}
-
-.test-start .btn :hover {
+.start-btn, .start-btn:hover, .start-btn:active{
   margin-top: 20%;
   font-size: 40px;
   /* font-family: "zkqkhy"; */
 }
 
 .test-result {
-  margin-top: 20%;
+  margin-top: 15%;
   text-align: center;
   /* font-family: "zkqkhy"; */
 }
 
 .invitation {
-  background-color: rgb(145, 132, 247, 0);
+  background-color: rgb(149, 128, 255, 0);
   margin-top: 0%;
   border: none;
 }
 
 .question {
-  background-color: rgb(145, 132, 247, 0);
+  background-color: rgb(149, 128, 255, 0);
   margin-top: 10%;
   border: none;
   color: #fff681;
   /* font-family: "zkqkhy"; */
 }
 
-.card-title {
-  font-size: 35px;
+.question .card-body {
+  padding: 0%;
 }
 
-.btn {
-  color: #ffffff;
-  background-color: rgb(145, 132, 247, 0.8);
-  border: solid;
-  border-width: 1px;
-  margin: 10px;
-  /* font-family: "zkqkhy"; */
-  font-size: x-large;
-}
-.btn:hover {
-  color: #ffffff;
-  background-color: rgb(145, 132, 247, 0.8);
-  /* font-family: "zkqkhy"; */
-  font-size: x-large;
+.card-title {
+  font-size: 35px;
 }
 
 .form {
@@ -99,16 +98,21 @@ body {
   /* font-family: "zkqkhy"; */
 }
 
+.ans-btn-group {
+  text-align: center;
+  width: 100%;
+}
+
 .answer-button {
   margin-bottom: 10px;
-  width: 100%;
+  width: 90%;
   text-align: left;
   /* font-family: "zkqkhy"; */
 }
 
 .answer-button:active{
   color: #ffffff;
-  background-color: rgb(145, 132, 247);
+  background-color: rgb(149, 128, 255);
   /* font-family: "zkqkhy"; */
 }
 
@@ -151,4 +155,8 @@ body {
 .invitation .answers {
   margin-top: 0;
   text-align: center;
+}
+
+.screenshot-text {
+  margin-top: 10px;
 }
