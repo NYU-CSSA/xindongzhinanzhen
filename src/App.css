@@ -20,12 +20,12 @@ body {
   background-color: rgb(145, 132, 247, 0);
 }
 
-
 .test-start {
   margin-top: 30%;
   text-align: center;
   color: #fff681;
   font-family: "zkqkhy";
+  font-size: xx-large;
 }
 
 .test-start .btn {
@@ -106,4 +106,13 @@ body {
 .mytitle {
   color: #fff681;
   font-family: "zkqkhy";
+}
+
+.logo {
+  z-index: 1;
+  position: fixed;
+  bottom: 0%;
+  margin: 5%;
+  color: #ffffff;
+  font-size: small;
 }
