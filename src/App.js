@@ -124,12 +124,20 @@ class App extends React.Component {
           {/* <div className="card" style={{"width": "18rem"}}> */}
           <div className="card invitation">
             <div className="card-body">
-              <h5 className="invitation-title card-title">{this.state.rejected ? "心动指南针" : "根据你的兴趣结交更多的人！"}</h5>
-              <div className="invitation-text ">
-                <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动——『心动指南针』。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动—— 『铭心大侦探』，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
+              <div className="invitation-title">
+                <p className="card-title invitation-title">心动指南针</p>
+                <p className="invitation-subtitle">找到你在NYU兴趣相同的好朋友</p>
+              </div>
+              <div className="invitation-text">
+                <p className="card-text">NYUCSSA 诚意推出全新线上活动 2.15-2.22 【心动指南针】！
+                我们将根据您本次的测试结果，为您匹配到4-6人的微信群。通过积极完成一周群任务，您将结交更多有趣的小伙伴，并有机会和朋友们面基、一起参与我们线下悬疑活动【铭心大侦探】，赢得精美奖品。
+                本次活动人数有限，赶快抓紧时间报名吧！
+                让我们在这个春天，摘下心灵的口罩，遇到彼此吧～
+                </p>
+                <p className="invitation-note">注：若匹配成功，工作人员将于2月14日联系您</p>
               </div>
               <div className="answers">
-                <button type="button" className="btn btn-primary inv-btn" onClick={() => { this.setState({ rejected: false, state: 'form' }) }}>愿意，现在就报名</button>
+                <button type="button" className="btn btn-primary inv-btn" onClick={() => { this.setState({ rejected: false, state: 'form' }) }}>立即报名</button>
                 <button type="button" className="btn btn-primary inv-btn" onClick={() => { this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
               </div>
             </div>
