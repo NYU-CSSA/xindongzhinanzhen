@@ -3,7 +3,7 @@ import './App.css';
 
 let questions = [
   ['placeholder for question 0', [], []],
-  ['我经常出没在——', ['A. Bobst', 'B. Ktown', 'C. 中国城', 'D. 法拉盛', 'E. Soho', 'F. 家里'], [2, 2, 2, 2, 2, 2]],
+  ['我经常出没在：', ['A. Bobst', 'B. Ktown', 'C. 中国城', 'D. 法拉盛', 'E. Soho', 'F. 家里'], [2, 2, 2, 2, 2, 2]],
   ['周末当然要：', ['A. 和朋友浪浪浪', 'B.一个人肥宅快乐'], [3, 4]],
   [
     '跟朋友出去玩，你会选择以下？',
@@ -124,11 +124,13 @@ class App extends React.Component {
           {/* <div className="card" style={{"width": "18rem"}}> */}
           <div className="card invitation">
             <div className="card-body">
-              <h5 className="card-title">{this.state.rejected ? "心动指南针" : "根据你的兴趣结交更多的人！"}</h5>
-              <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动——『心动指南针』。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动—— 『铭心大侦探』，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
+              <h5 className="invitation-title card-title">{this.state.rejected ? "心动指南针" : "根据你的兴趣结交更多的人！"}</h5>
+              <div className="invitation-text ">
+                <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动——『心动指南针』。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动—— 『铭心大侦探』，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
+              </div>
               <div className="answers">
-                <button type="button" className="btn btn-primary" onClick={() => { this.setState({ rejected: false, state: 'form' }) }}>愿意，现在就报名</button>
-                <button type="button" className="btn btn-primary" onClick={() => {this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
+                <button type="button" className="btn btn-primary inv-btn" onClick={() => { this.setState({ rejected: false, state: 'form' }) }}>愿意，现在就报名</button>
+                <button type="button" className="btn btn-primary inv-btn" onClick={() => {this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
               </div>
             </div>
           </div>
@@ -140,7 +142,8 @@ class App extends React.Component {
   render_start() {
     return (
       <div className="container test-start">
-        <h1>测测你的NYU称号</h1>
+        <h2>测测你的</h2>
+        <h1>NYU称号</h1>
         <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: "testing" }) }}>开始测试</button>
       </div>
     )
