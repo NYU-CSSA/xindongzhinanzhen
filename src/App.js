@@ -125,7 +125,7 @@ class App extends React.Component {
           <div className="card invitation">
             <div className="card-body">
               <h5 className="card-title">{this.state.rejected ? "心动指南针" : "根据你的兴趣结交更多的人！"}</h5>
-              <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动——『心动指南针』。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动—— 【铭心大侦探】，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
+              <p className="card-text">NYUCSSA将于2.15-2.22进行为期一周的线上群聊活动——『心动指南针』。我们会根据您对以上问题的回答，将您匹配进4-6人的微信群组。通过积极完成一周群任务，您将有机会和队友在现实生活中见面，一起参与2.23晚的线下悬疑活动—— 『铭心大侦探』，并获得精美礼品。请问您是否愿意参与这次活动呢？（由于本次活动人数有限，主办方不能保证百分之百匹配成功。一旦匹配成功，工作人员将于2月14日联系您）</p>
               <div className="answers">
                 <button type="button" className="btn btn-primary" onClick={() => { this.setState({ rejected: false, state: 'form' }) }}>愿意，现在就报名</button>
                 <button type="button" className="btn btn-primary" onClick={() => {this.setState({ rejected: true, state: 'finished' }) }}>先看结果再说</button>
@@ -270,7 +270,7 @@ class App extends React.Component {
           : ''}
         <br />
         <img width="120px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
-        <p>截图至朋友圈<br />让他们扫码测测"我的NYU称号"</p>
+        <p>截图至朋友圈<br />扫码一起来测"我的NYU称号"</p>
       </div>
     )
   }
@@ -303,7 +303,7 @@ class App extends React.Component {
         <h5>报名表</h5>
         <form>
           <div className="form-group">
-            <label htmlFor="email">邮箱（一个NYU邮箱仅能测试一次哦～）</label>
+            <label htmlFor="email">邮箱（每个NYU邮箱仅能测试一次哦～）</label>
             <input type="email" className="form-control" name="email" placeholder='email' onChange={(e) => { this.setState({ email: e.target.value }) }} />
           </div>
           <div className="form-group">
