@@ -239,9 +239,7 @@ class App extends React.Component {
         var xhr = new XMLHttpRequest();
         xhr.addEventListener('load', () => {
           console.log(xhr.responseText);
-          if (xhr.responseText.includes("already registered")) {
-            alert("您的邮箱已经报名过了!");
-          }
+          alert("报名成功！请等待CSSA工作人员联系~")
         })
         console.log((result));
         xhr.open('GET', 'https://www.cssanyu.org/2020/questionnaire.php?data=' + encodeURIComponent(result));
@@ -272,7 +270,7 @@ class App extends React.Component {
           <button type="button" className="btn btn-primary" onClick={() => { this.setState({ state: 'invitation' }) }}>报名参加『心动指南针』</button>
           : ''}
         <br />
-        <img width="120px" alt="" src={process.env.PUBLIC_URL + "/qrcode.png"} />
+        <img width="120px" alt="" src={process.env.PUBLIC_URL + "/test-qrcode.png"} />
         <p className="screenshot-text">截图至朋友圈<br />扫码一起来测"我的NYU称号"</p>
       </div>
     )
