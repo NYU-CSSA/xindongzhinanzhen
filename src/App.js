@@ -70,6 +70,7 @@ class App extends React.Component {
       email: '',
       sex: '',
       wechat: '',
+      my_title: '',
     }
   }
 
@@ -158,6 +159,9 @@ class App extends React.Component {
   }
 
   generate_title() {
+    if (this.state.my_title !== '') {
+      return this.state.my_title;
+    }
     let answers_map = {};
     for (let i in this.state.answers) {
       let answer = this.state.answers[i];
@@ -203,7 +207,7 @@ class App extends React.Component {
       default:
         console.log(answers_map);
     }
-
+    this.setState({my_title: my_title});
     return my_title;
   }
 
